@@ -1,0 +1,4 @@
+,Log,variants_before,variants eps = 0.01,variants eps = 0.1,variants eps = 1.00,variants pripel eps = 0.01,variants pripel eps = 0.1,variants pripel eps = 1.00
+0,sepsis,846,0 - 5,4 - 13,5 - 13,0 - 4,4 - 7,4 - 7
+1,coselog,116,4 - 8,8 - 14,14 - 16,3 - 6,2 - 8,2 - 4
+2,traffic,231,52 - 63,61 - 68,63 - 72,5 - 8,7 - 11,9 - 10

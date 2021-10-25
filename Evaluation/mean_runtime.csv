@@ -1,0 +1,4 @@
+,Log,dfg_approach eps = 0.01,dfg_approach eps = 0.1,dfg_approach eps = 1.0,pripel eps = 0.01,pripel eps = 0.1,pripel eps = 1.0
+0,sepsis,1.9,1.4,1.4,712.1,12.3,0.1
+1,coselog,3.0,1.0,0.9,505.4,9.7,0.1
+2,traffic,60.7,61.6,61.2,25.7,12.4,11.8
