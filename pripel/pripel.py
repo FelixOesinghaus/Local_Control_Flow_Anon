@@ -85,7 +85,7 @@ filePath = os.path.join(logs_path,file_name)
 
 
 epsilon = 0.1
-N = 5
+N = 6
 k = 4
 
 log = xes_import_factory.apply(filePath)
