@@ -130,7 +130,7 @@ for k in range(len(file_name)):
     
     if folder_name[k] == "sepsis":
         for n in range(len(epsRange)):
-            axs[n].set_title(r'$\epsilon$ = ' + r'%s' % (epsRange[m]))
+            axs[n].set_title(r'$\epsilon$ = ' + r'%s' % (epsRange[n]))
             
     if folder_name[k] != "traffic":
         for o in range(len(epsRange)):
