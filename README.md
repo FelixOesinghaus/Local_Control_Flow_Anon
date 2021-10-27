@@ -2,7 +2,7 @@
 
 This repository contains all of the code used in the Bachelor's thesis "Trace Variant Queries in Process Miningbased on Local Control-Flow Anonymization".
 
-It also contains all the files necessary to 
+It also contains all the files necessary to evaluate and plot the figures and tables in the thesis.
 
 ## Requirements
 You need various python packages to run this project
@@ -43,17 +43,21 @@ After executing call_local_control-flow_anon.py you finde some metadata here:
 \\Evaluation\\**folder_name**\\**folder_name**_trace_variant_distribution.csv
 ```
 
-The code in the \\pripel directory is based on the PRIPEL Framework (https://github.com/samadeusfp/PRIPEL)
-The implementation of the inductive in \\Evaluation directory is based on the Evaluation used for the paper "SaCoFa: Semantics-aware Control-flow Anonymization for Process Mining"
-whose source code can be found here:  (https://github.com/samadeusfp/SaCoFa)
+The code in the 'pripel' directory is based on the PRIPEL Framework, the code of which can be found here:
+ (https://github.com/samadeusfp/PRIPEL)
+However, only the Trace Variant Query is used for the purposes of this project.
+
+The implementation of the inductive in Evaluation directory is based on the Evaluation used for the paper "SaCoFa: Semantics-aware Control-flow Anonymization for Process Mining",
+ the code of which can be found here:
+(https://github.com/samadeusfp/SaCoFa)
 
 
 
-To plot figures however first you will need to execute the Trace Variant Query baseline to compare the results to.
-To do so execute:
+To plot figures you will first need to execute the Trace Variant Query baseline to compare the results to.
+To do so, go to the pripel directy and execute:
 
 ```python
-pripel\\ pripel.py
+pripel.py
 ```
 
 
@@ -68,21 +72,20 @@ Input:(Choose the same as for call_local_control-flow_anon.py for consistenty)
 
 This may take a while.
 
-###Using the Inductive Miner
+##Using the Inductive Miner
 To be able to plot Fitness, Precision, Simplicity and generalization you first need to call the Inductive Miner
+in the Evaluation directory
 Choose (log_name, folder_name, original_log_path, epsRange, tries) accordingly
 ```python
-Evaluationl\\ call_model_quality_check.py
+call_model_quality_check.py
 ```
 
 Choose (log_name, folder_name, epsRange, tries) accordingly
-Then gather the data in a single .csv by calling 
+Then gather the data in a single .csv by calling and plot the data:
+
 ```python
 Evaluationl\\pickle_to_csv.py
-```
-and finally 
-```python
-Evaluationl\\fitness_plot.py
+fitness_plot.py
 ```
 
 
