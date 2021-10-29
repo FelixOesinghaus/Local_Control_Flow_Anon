@@ -74,12 +74,12 @@ This may take a while.
 ## Using the Inductive Miner
 To be able to plot Fitness, Precision, Simplicity and generalization you first need to call the Inductive Miner
 in the Evaluation directory
-Choose (log_name, folder_name, original_log_path, epsRange, tries) accordingly
+Choose (log_name, folder_name, original_log_path, epsRange, tries) accordingly and keep them consistent before calling each script.
+
 ```python
 call_model_quality_check.py
 ```
 
-Choose (log_name, folder_name, epsRange, tries) accordingly
 Then gather the data in a single .csv by calling and plot the data:
 
 ```python
@@ -87,14 +87,13 @@ Evaluationl\\pickle_to_csv.py
 fitness_plot.py
 ```
 
-
 The trace variant distribution can be plotted by calling
-Choose (file_name, folder_name, epsRange, tries) accordingly
+
 ```python
 tv_distribution_plot.py
 ```
 
-Individual stats from all the **folder_name**_stats.csv can be compiled with:
+Individual stats from all the **folder_name**_stats.csv tables can be compiled with:
 ```python
 log_stats_to_csv_table.py
 ```
