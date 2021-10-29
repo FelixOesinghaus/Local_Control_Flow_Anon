@@ -3,8 +3,6 @@ from pm4py.objects.log import util as log_utils
 from pm4py.objects.log.importer.xes import factory as xes_import_factory
 from pm4py.objects.log.exporter.xes import factory as xes_exporter
 from pm4py.objects.log.util import sampling
-import tracematcher
-from attributeAnonymizier import AttributeAnonymizier as AttributeAnonymizier
 from trace_variant_query import privatize_tracevariants
 import datetime
 import sys
@@ -76,8 +74,8 @@ file_name = "Road_Traffic_Fine_Management_Process.xes"
 #folder_name = "coselog"
 folder_name = "traffic"
 
-logs_path = os.getcwd().replace("pripel", "Logs")
-eval_path = os.path.join(os.getcwd().replace("pripel", "Evaluation"),"pripel")
+logs_path = os.getcwd().replace("tvq", "Logs")
+eval_path = os.path.join(os.getcwd().replace("tvq", "Evaluation"),"tvq")
 
 new_folder_create_name = os.path.join(eval_path, folder_name)
 
@@ -105,7 +103,7 @@ common_traces_dict['epsilon'] = 99.9
 column_names_common_tv = list(common_traces_dict.keys())
 trace_variant_df = pd.DataFrame(columns = column_names_common_tv)
 trace_variant_df = trace_variant_df.append(common_traces_dict,ignore_index=True)
-################################## pripel code
+################################## tvq code
 
 for i in range(len(epsilon_list)):
     for l in range(10):
@@ -130,7 +128,7 @@ for i in range(len(epsilon_list)):
         result_log_path_one = filePath.replace("\\Logs","\\Evaluation")
         result_log_path = result_log_path_one.replace(".xes",new_ending)
 
-        print("\n output_path pripel: ",result_log_path,"\n")
+        print("\n output_path tvq: ",result_log_path,"\n")
         starttime = datetime.datetime.now()
 
 
@@ -139,26 +137,7 @@ for i in range(len(epsilon_list)):
         prefix_after = get_prefix_frequencies_from_log(tv_query_log)
         private_log_from_variant = generate_pm4py_log_from_variants(prefix_after)
         print(len(tv_query_log))
-        #endtime_tv_query = datetime.datetime.now()
-        #print("Time of TV Query: " + str((endtime_tv_query - starttime_tv_query)))
-        #print("print0")
-        #starttime_trace_matcher = datetime.datetime.now()
-        #print("print1")
-        #traceMatcher = tracematcher.TraceMatcher(tv_query_log,log)
-        #print("print2")
-        #matchedLog = traceMatcher.matchQueryToLog()
-        #print(len(matchedLog))
-        #endtime_trace_matcher = datetime.datetime.now()
-        #print("Time of TraceMatcher: " + str((endtime_trace_matcher - starttime_trace_matcher)))
-        #distributionOfAttributes = traceMatcher.getAttributeDistribution()
-        #occurredTimestamps, occurredTimestampDifferences = traceMatcher.getTimeStampData()
-        #print(min(occurredTimestamps))
-        #starttime_attribute_anonymizer = datetime.datetime.now()
-        #attributeAnonymizier = AttributeAnonymizier()
-        #anonymiziedLog, attritbuteDistribution = attributeAnonymizier.anonymize(matchedLog,distributionOfAttributes,epsilon_list[i],occurredTimestampDifferences,occurredTimestamps)
-        #endtime_attribute_anonymizer = datetime.datetime.now()
-        #print("Time of attribute anonymizer: " +str(endtime_attribute_anonymizer - starttime_attribute_anonymizer))
-        #print(result_log_path)
+        
         traces_after = sum(prefix_after.values())
 
         result_log_path = result_log_path.replace("\\",os.path.sep)#####
@@ -178,10 +157,6 @@ for i in range(len(epsilon_list)):
         stats_dataframe = stats_dataframe.append({'epsilon': epsilon_list[i],'traces_before': traces_before,'traces_after': traces_after,'variants_before': len(prefix.keys()),'variants_after': len(prefix_after.keys()),'common_variants': len(comkeys),'runtime': end-start }, ignore_index=True)
         
         print("Complete Time: " + str((endtime-starttime)))
-
-        #print("Time of TV Query: " + str((endtime_tv_query - starttime_tv_query)))
-        #print("Time of TraceMatcher: " + str((endtime_trace_matcher - starttime_trace_matcher)))
-        #print("Time of attribute anonymizer: " +str(endtime_attribute_anonymizer - starttime_attribute_anonymizer))
 
         print(result_log_path)
         #print(freq(attritbuteDistribution))

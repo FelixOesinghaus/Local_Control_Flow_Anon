@@ -40,18 +40,18 @@ for k in range(len(file_name)):
         fig.suptitle('Traffic Fines trace variant frequencies')
         
     DF_list = list()
-    DF_list_pripel = list()
+    DF_list_tvq = list()
 
     #DF_list.append(pd.DataFrame(columns = column_names))
     #print(k)
     base_path = os.getcwd() + os.sep + folder_name[k] + os.sep
-    base_path_pripel = os.getcwd() + os.sep +"pripel"+ os.sep + folder_name[k] + os.sep
+    base_path_tvq = os.getcwd() + os.sep +"tvq"+ os.sep + folder_name[k] + os.sep
     
     load_path = base_path + folder_name[k] + "_trace_variant_distribution.csv"
-    load_path_pripel = base_path_pripel + folder_name[k] + "_trace_variant_distribution.csv"
+    load_path_tvq = base_path_tvq + folder_name[k] + "_trace_variant_distribution.csv"
     
     full_df = pd.read_csv(load_path, sep=',')
-    full_df_pripel = pd.read_csv(load_path_pripel, sep=',')
+    full_df_tvq = pd.read_csv(load_path_tvq, sep=',')
     
     trace_names = full_df.columns.values.tolist()
     list_of_traces = trace_names[1:len(trace_names)-1]
@@ -66,14 +66,14 @@ for k in range(len(file_name)):
     for m in range(len(epsRange)):
     
         DF_list.append(full_df[full_df['epsilon'] == epsRange[m]].drop(["Unnamed: 0","epsilon"],axis=1))
-        DF_list_pripel.append(full_df_pripel[full_df_pripel['epsilon'] == epsRange[m]].drop(["Unnamed: 0","epsilon"],axis=1))
+        DF_list_tvq.append(full_df_tvq[full_df_tvq['epsilon'] == epsRange[m]].drop(["Unnamed: 0","epsilon"],axis=1))
         plt.sca(axs[m])
         plt.grid(axis='y')
         plt.xticks(range(1,21))
         
         
         means = DF_list[m].mean(axis=0).tolist()
-        pripel_means = DF_list_pripel[m].mean(axis=0).tolist()
+        tvq_means = DF_list_tvq[m].mean(axis=0).tolist()
         max = DF_list[m].max(axis=0).tolist()
         min = DF_list[m].min(axis=0).tolist()
         #print("\n DF_list at eps =",epsRange[k])
@@ -81,7 +81,7 @@ for k in range(len(file_name)):
         #axs[k].boxplot(sepsis_df[sepsis_df['epsilon'] == epsRange[k]])
         #axs[k].set_title(epsRange[k])
         #label =
-        axs[m].plot(one_to_twenty,pripel_means,color='black', linestyle='dashed',label="PRIPEL baseline avg.")
+        axs[m].plot(one_to_twenty,tvq_means,color='black', linestyle='dashed',label="tvq baseline avg.")
         
         axs[m].plot(one_to_twenty,max,color='green', linestyle='dotted',label="Maximum occurrence")
         axs[m].plot(one_to_twenty,min,color='blue', linestyle='dotted',label="Minimum occurrence")

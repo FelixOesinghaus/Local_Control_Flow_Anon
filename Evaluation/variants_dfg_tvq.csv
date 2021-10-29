@@ -1,4 +1,4 @@
- & Log & variants_before & variants eps = 0.01 & variants eps = 0.1 & variants eps = 1.00 & variants pripel eps = 0.01 & variants pripel eps = 0.1 & variants pripel eps = 1.00
+ & Log & variants_before & variants eps = 0.01 & variants eps = 0.1 & variants eps = 1.00 & variants tvq eps = 0.01 & variants tvq eps = 0.1 & variants tvq eps = 1.00
 0 & sepsis & 846 & 567 - 1381 & 695 - 902 & 891 - 920 & 11561 - 22577 & 2037 - 3899 & 4 - 8
 1 & coselog & 116 & 1023 - 2061 & 604 - 718 & 340 - 368 & 10010 - 25223 & 1001 - 3278 & 3 - 4
 2 & traffic & 231 & 1058 - 1353 & 628 - 720 & 540 - 599 & 400 - 940 & 49 - 199 & 9 - 10

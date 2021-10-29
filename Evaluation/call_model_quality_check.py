@@ -42,7 +42,7 @@ for log_index in range(len(log_name)):
 ### Conformance Checking for Trace Variant Query
 for log_index in range(len(log_name)):
 
-    base_path = os.getcwd() + os.sep + "pripel" + os.sep + folder_name[log_index] + os.sep
+    base_path = os.getcwd() + os.sep + "tvq" + os.sep + folder_name[log_index] + os.sep
     os.environ["PATH"] += os.pathsep + 'C:' + os.pathsep + 'users' + os.pathsep + 'oesinghaus' + os.pathsep + 'appdata' + os.pathsep + 'local' + os.pathsep + 'programs' + os.pathsep + 'python'+ os.pathsep + 'python36'+ os.pathsep + 'lib'+ os.pathsep + 'site-packages'+ os.pathsep + 'C:'
 
     original_log = xes_importer.apply(original_log_path[log_index])

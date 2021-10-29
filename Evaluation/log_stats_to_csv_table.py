@@ -34,11 +34,11 @@ fig.suptitle('Sepsis')
 #stats_dataframe.to_csv(os.path.join(new_folder_create_name,(folder_name + "_stats.csv")))
 
 
-#column_names = ['Log', 'dfg_approach eps = 0.01','dfg_approach eps = 0.1','dfg_approach eps = 1.0','pripel eps = 0.01','pripel eps = 0.1','pripel eps = 1.0']
-#column_names = ['Log','traces_before', 'dfg_approach eps = 0.01','dfg_approach eps = 0.1','dfg_approach eps = 1.0','pripel eps = 0.01','pripel eps = 0.1','pripel eps = 1.0']
+#column_names = ['Log', 'dfg_approach eps = 0.01','dfg_approach eps = 0.1','dfg_approach eps = 1.0','tvq eps = 0.01','tvq eps = 0.1','tvq eps = 1.0']
+#column_names = ['Log','traces_before', 'dfg_approach eps = 0.01','dfg_approach eps = 0.1','dfg_approach eps = 1.0','tvq eps = 0.01','tvq eps = 0.1','tvq eps = 1.0']
 #column_names = ['Log','total_df_amount', 'total_df_deletedeps = 0.01','total_df_deletedeps = 0.1','total_df_deletedeps = 1.00','df_percentage deleted eps = 0.01','df_percentage deleted eps = 0.1','df_percentage deleted eps = 1.00']
 #column_names = ['Log','variants_before', 'total_df_deletedeps = 0.01','total_df_deletedeps = 0.1','total_df_deletedeps = 1.00','df_percentage deleted eps = 0.01','df_percentage deleted eps = 0.1','df_percentage deleted eps = 1.00']
-column_names = ['Log','variants_before', 'variants eps = 0.01','variants eps = 0.1','variants eps = 1.00','variants pripel eps = 0.01','variants pripel eps = 0.1','variants pripel eps = 1.00']
+column_names = ['Log','variants_before', 'variants eps = 0.01','variants eps = 0.1','variants eps = 1.00','variants tvq eps = 0.01','variants tvq eps = 0.1','variants tvq eps = 1.00']
 result_df_runtime = pd.DataFrame(columns = column_names)
 
 #for k in range(len(epsRange)):
@@ -46,13 +46,13 @@ for k in range(len(file_name)):
     #DF_list.append(pd.DataFrame(columns = column_names))
     #print(k)
     base_path = os.getcwd() + os.sep + folder_name[k] + os.sep
-    base_path_pripel = os.getcwd() + os.sep +"pripel"+ os.sep + folder_name[k] + os.sep
+    base_path_tvq = os.getcwd() + os.sep +"tvq"+ os.sep + folder_name[k] + os.sep
     
     load_path = base_path + folder_name[k] + "_stats.csv"
-    load_path_pripel = base_path_pripel + folder_name[k] + "_stats.csv"
+    load_path_tvq = base_path_tvq + folder_name[k] + "_stats.csv"
     
     full_df = pd.read_csv(load_path, sep=',')
-    full_df_pripel = pd.read_csv(load_path_pripel, sep=',')
+    full_df_tvq = pd.read_csv(load_path_tvq, sep=',')
     
     df_small_eps = full_df[full_df['epsilon'] == epsRange[0]]
     df_medium_eps = full_df[full_df['epsilon'] == epsRange[1]]
@@ -60,9 +60,9 @@ for k in range(len(file_name)):
     
     
     
-    df_pripel_small_eps = full_df_pripel[full_df_pripel['epsilon'] == epsRange[0]]
-    df_pripel_medium_eps = full_df_pripel[full_df_pripel['epsilon'] == epsRange[1]]
-    df_pripel_large_eps = full_df_pripel[full_df_pripel['epsilon'] == epsRange[2]]
+    df_tvq_small_eps = full_df_tvq[full_df_tvq['epsilon'] == epsRange[0]]
+    df_tvq_medium_eps = full_df_tvq[full_df_tvq['epsilon'] == epsRange[1]]
+    df_tvq_large_eps = full_df_tvq[full_df_tvq['epsilon'] == epsRange[2]]
     
     #traces_before = df_small_eps["traces_before"].mean()
     #total_df = df_small_eps["total_df_amount"].mean()
@@ -85,27 +85,27 @@ for k in range(len(file_name)):
     #large_eps_dfg_value = "{0:.0f}".format((df_large_eps["total_df_deleted"].mean())) 
     
     
-    #small_eps_pripel_value = "{0:.2f}".format((df_pripel_small_eps["traces_after"].min()/traces_before)) + "-" + "{0:.2f}".format((df_pripel_small_eps["traces_after"].max()/traces_before)) 
-    #medium_eps_pripel_value = "{0:.2f}".format((df_pripel_medium_eps["traces_after"].min()/traces_before)) + "-" + "{0:.2f}".format((df_pripel_medium_eps["traces_after"].max()/traces_before)) 
-    #large_eps_pripel_value = "{0:.2f}".format((df_pripel_large_eps["traces_after"].min()/traces_before)) + "-" + "{0:.2f}".format((df_pripel_large_eps["traces_after"].max()/traces_before)) 
-    #small_eps_pripel_value = "{0:.0f}".format(df_pripel_small_eps["variants_after"].min()) + " - " + "{0:.0f}".format(df_pripel_small_eps["variants_after"].max()) 
-    #medium_eps_pripel_value = "{0:.0f}".format(df_pripel_medium_eps["variants_after"].min()) + " - " + "{0:.0f}".format(df_pripel_medium_eps["variants_after"].max()) 
-    #large_eps_pripel_value = "{0:.0f}".format(df_pripel_large_eps["variants_after"].min()) + " - " + "{0:.0f}".format(df_pripel_large_eps["variants_after"].max()) 
+    #small_eps_tvq_value = "{0:.2f}".format((df_tvq_small_eps["traces_after"].min()/traces_before)) + "-" + "{0:.2f}".format((df_tvq_small_eps["traces_after"].max()/traces_before)) 
+    #medium_eps_tvq_value = "{0:.2f}".format((df_tvq_medium_eps["traces_after"].min()/traces_before)) + "-" + "{0:.2f}".format((df_tvq_medium_eps["traces_after"].max()/traces_before)) 
+    #large_eps_tvq_value = "{0:.2f}".format((df_tvq_large_eps["traces_after"].min()/traces_before)) + "-" + "{0:.2f}".format((df_tvq_large_eps["traces_after"].max()/traces_before)) 
+    #small_eps_tvq_value = "{0:.0f}".format(df_tvq_small_eps["variants_after"].min()) + " - " + "{0:.0f}".format(df_tvq_small_eps["variants_after"].max()) 
+    #medium_eps_tvq_value = "{0:.0f}".format(df_tvq_medium_eps["variants_after"].min()) + " - " + "{0:.0f}".format(df_tvq_medium_eps["variants_after"].max()) 
+    #large_eps_tvq_value = "{0:.0f}".format(df_tvq_large_eps["variants_after"].min()) + " - " + "{0:.0f}".format(df_tvq_large_eps["variants_after"].max()) 
     
-    small_eps_pripel_value = "{0:.0f}".format(df_pripel_small_eps["common_variants"].min()) + " - " + "{0:.0f}".format(df_pripel_small_eps["common_variants"].max()) 
-    medium_eps_pripel_value = "{0:.0f}".format(df_pripel_medium_eps["common_variants"].min()) + " - " + "{0:.0f}".format(df_pripel_medium_eps["common_variants"].max()) 
-    large_eps_pripel_value = "{0:.0f}".format(df_pripel_large_eps["common_variants"].min()) + " - " + "{0:.0f}".format(df_pripel_large_eps["common_variants"].max()) 
+    small_eps_tvq_value = "{0:.0f}".format(df_tvq_small_eps["common_variants"].min()) + " - " + "{0:.0f}".format(df_tvq_small_eps["common_variants"].max()) 
+    medium_eps_tvq_value = "{0:.0f}".format(df_tvq_medium_eps["common_variants"].min()) + " - " + "{0:.0f}".format(df_tvq_medium_eps["common_variants"].max()) 
+    large_eps_tvq_value = "{0:.0f}".format(df_tvq_large_eps["common_variants"].min()) + " - " + "{0:.0f}".format(df_tvq_large_eps["common_variants"].max()) 
     
     
     #print( "{0:.1f}".format(df_small_eps["runtime"].mean()))
     #sys.exit()
     #for k in range(len(epsRange)):
     #runtime
-    #result_df_runtime = result_df_runtime.append({'Log':folder_name[k], 'dfg_approach eps = 0.01': "{0:.1f}".format(df_small_eps["runtime"].mean()) ,'dfg_approach eps = 0.1': "{0:.1f}".format(df_medium_eps["runtime"].mean()),'dfg_approach eps = 1.0': "{0:.1f}".format(df_large_eps["runtime"].mean()),'pripel eps = 0.01': "{0:.1f}".format(df_pripel_small_eps["runtime"].mean()),'pripel eps = 0.1': "{0:.1f}".format(df_pripel_medium_eps["runtime"].mean()),'pripel eps = 1.0': "{0:.1f}".format(df_pripel_large_eps["runtime"].mean())}, ignore_index=True)
+    #result_df_runtime = result_df_runtime.append({'Log':folder_name[k], 'dfg_approach eps = 0.01': "{0:.1f}".format(df_small_eps["runtime"].mean()) ,'dfg_approach eps = 0.1': "{0:.1f}".format(df_medium_eps["runtime"].mean()),'dfg_approach eps = 1.0': "{0:.1f}".format(df_large_eps["runtime"].mean()),'tvq eps = 0.01': "{0:.1f}".format(df_tvq_small_eps["runtime"].mean()),'tvq eps = 0.1': "{0:.1f}".format(df_tvq_medium_eps["runtime"].mean()),'tvq eps = 1.0': "{0:.1f}".format(df_tvq_large_eps["runtime"].mean())}, ignore_index=True)
     traces_before = df_small_eps["traces_before"].mean()
-    #result_df_runtime = result_df_runtime.append({'Log':folder_name[k],'traces_before': "{0:.0f}".format(df_small_eps["traces_before"].mean()) , 'dfg_approach eps = 0.01': "{0:.0f}".format(df_small_eps["traces_after"].mean()) ,'dfg_approach eps = 0.1': "{0:.0f}".format(df_medium_eps["traces_after"].mean()),'dfg_approach eps = 1.0': "{0:.0f}".format(df_large_eps["traces_after"].mean()),'pripel eps = 0.01': "{0:.0f}".format(df_pripel_small_eps["traces_after"].mean()),'pripel eps = 0.1': "{0:.0f}".format(df_pripel_medium_eps["traces_after"].mean()),'pripel eps = 1.0': "{0:.0f}".format(df_pripel_large_eps["traces_after"].mean())}, ignore_index=True)
-    #result_df_runtime = result_df_runtime.append({'Log':folder_name[k],'traces_before': "{0:.0f}".format(df_small_eps["traces_before"].mean()) , 'dfg_approach eps = 0.01': small_eps_dfg_value ,'dfg_approach eps = 0.1': medium_eps_dfg_value,'dfg_approach eps = 1.0': large_eps_dfg_value,'pripel eps = 0.01': small_eps_pripel_value,'pripel eps = 0.1': medium_eps_pripel_value,'pripel eps = 1.0': large_eps_pripel_value}, ignore_index=True)
-    result_df_runtime = result_df_runtime.append({'Log':folder_name[k],'variants_before':variants_before, 'variants eps = 0.01':small_eps_dfg_value,'variants eps = 0.1':medium_eps_dfg_value,'variants eps = 1.00':large_eps_dfg_value,'variants pripel eps = 0.01':small_eps_pripel_value,'variants pripel eps = 0.1':medium_eps_pripel_value,'variants pripel eps = 1.00': large_eps_pripel_value}, ignore_index=True)
+    #result_df_runtime = result_df_runtime.append({'Log':folder_name[k],'traces_before': "{0:.0f}".format(df_small_eps["traces_before"].mean()) , 'dfg_approach eps = 0.01': "{0:.0f}".format(df_small_eps["traces_after"].mean()) ,'dfg_approach eps = 0.1': "{0:.0f}".format(df_medium_eps["traces_after"].mean()),'dfg_approach eps = 1.0': "{0:.0f}".format(df_large_eps["traces_after"].mean()),'tvq eps = 0.01': "{0:.0f}".format(df_tvq_small_eps["traces_after"].mean()),'tvq eps = 0.1': "{0:.0f}".format(df_tvq_medium_eps["traces_after"].mean()),'tvq eps = 1.0': "{0:.0f}".format(df_tvq_large_eps["traces_after"].mean())}, ignore_index=True)
+    #result_df_runtime = result_df_runtime.append({'Log':folder_name[k],'traces_before': "{0:.0f}".format(df_small_eps["traces_before"].mean()) , 'dfg_approach eps = 0.01': small_eps_dfg_value ,'dfg_approach eps = 0.1': medium_eps_dfg_value,'dfg_approach eps = 1.0': large_eps_dfg_value,'tvq eps = 0.01': small_eps_tvq_value,'tvq eps = 0.1': medium_eps_tvq_value,'tvq eps = 1.0': large_eps_tvq_value}, ignore_index=True)
+    result_df_runtime = result_df_runtime.append({'Log':folder_name[k],'variants_before':variants_before, 'variants eps = 0.01':small_eps_dfg_value,'variants eps = 0.1':medium_eps_dfg_value,'variants eps = 1.00':large_eps_dfg_value,'variants tvq eps = 0.01':small_eps_tvq_value,'variants tvq eps = 0.1':medium_eps_tvq_value,'variants tvq eps = 1.00': large_eps_tvq_value}, ignore_index=True)
     
     #print("\n DF_list at eps =",epsRange[k])
     #print(DF_list[k])
@@ -118,5 +118,5 @@ for k in range(len(file_name)):
 #result_df_runtime.to_csv("mean_runtime.csv")
 #result_df_runtime.to_csv("mean_traces_percent.csv")
 #result_df_runtime.to_csv("mean_dfg.csv")
-#result_df_runtime.to_csv("variants_dfg_pripel.csv")
+#result_df_runtime.to_csv("variants_dfg_tvq.csv")
 result_df_runtime.to_csv("common_variants.csv")

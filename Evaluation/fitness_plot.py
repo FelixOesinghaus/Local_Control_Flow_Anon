@@ -56,19 +56,19 @@ for k in range(len(file_name)):
         fig.suptitle('Traffic Fines')
         
     DF_list = list()
-    DF_list_pripel = list()
+    DF_list_tvq = list()
     
     boxplots = list()
     #DF_list.append(pd.DataFrame(columns = column_names))
     #print(k)
     base_path = os.getcwd() + os.sep + folder_name[k] + os.sep
-    base_path_pripel = os.getcwd() + os.sep +"pripel"+ os.sep + folder_name[k] + os.sep
+    base_path_tvq = os.getcwd() + os.sep +"tvq"+ os.sep + folder_name[k] + os.sep
     
     load_path = base_path + folder_name[k] + "_fitness.csv"
-    load_path_pripel = base_path_pripel + folder_name[k] + "_fitness.csv"
+    load_path_tvq = base_path_tvq + folder_name[k] + "_fitness.csv"
     
     full_df = pd.read_csv(load_path, sep=',')
-    full_df_pripel = pd.read_csv(load_path_pripel, sep=',')
+    full_df_tvq = pd.read_csv(load_path_tvq, sep=',')
     
     trace_names = full_df.columns.values.tolist()
     list_of_traces = trace_names[1:len(trace_names)-1]
@@ -83,29 +83,29 @@ for k in range(len(file_name)):
     for m in range(len(epsRange)):
     
         DF_list.append(full_df[full_df['epsilon'] == epsRange[m]].drop(["Unnamed: 0","epsilon"],axis=1))
-        DF_list_pripel.append(full_df_pripel[full_df_pripel['epsilon'] == epsRange[m]].drop(["Unnamed: 0","epsilon"],axis=1))
+        DF_list_tvq.append(full_df_tvq[full_df_tvq['epsilon'] == epsRange[m]].drop(["Unnamed: 0","epsilon"],axis=1))
         plt.sca(axs[m])
         plt.grid(axis='y')
         plt.xticks(range(1,3),rotation = 15)
         
         f_scores = DF_list[m][value_to_be_plotted].tolist()################################
-        f_scores_pripel = DF_list_pripel[m][value_to_be_plotted].tolist()#############################
+        f_scores_tvq = DF_list_tvq[m][value_to_be_plotted].tolist()#############################
         
         f_scores_np_array = np.asarray(f_scores)
-        f_scores_pripel_np_array = np.asarray(f_scores_pripel)
-        f_scores_data = [ f_scores_np_array, f_scores_pripel_np_array]
+        f_scores_tvq_np_array = np.asarray(f_scores_tvq)
+        f_scores_data = [ f_scores_np_array, f_scores_tvq_np_array]
         print(f_scores_data)
         print(type(f_scores_data))
         #means = DF_list[m].mean(axis=0).tolist()
-        #pripel_means = DF_list_pripel[m].mean(axis=0).tolist()
+        #tvq_means = DF_list_tvq[m].mean(axis=0).tolist()
         #max = DF_list[m].max(axis=0).tolist()
         #min = DF_list[m].min(axis=0).tolist()
         #print(f_scores)
         #sys.exit()
         boxplot_current = axs[m].boxplot(f_scores_data,vert=True,patch_artist=True,labels=all_labels)
         boxplots.append(boxplot_current)
-        #axs[m].plot(one_to_twenty,pripel_means,color='black', linestyle='dashed',label="PRIPEL baseline avg.")
-        #axs[m].plot(one_to_twenty,pripel_means,color='black', linestyle='dashed',label="PRIPEL baseline avg.")
+        #axs[m].plot(one_to_twenty,tvq_means,color='black', linestyle='dashed',label="tvq baseline avg.")
+        #axs[m].plot(one_to_twenty,tvq_means,color='black', linestyle='dashed',label="tvq baseline avg.")
         
         #axs[m].plot(one_to_twenty,max,color='green', linestyle='dotted',label="Maximum occurrence")
         #axs[m].plot(one_to_twenty,min,color='blue', linestyle='dotted',label="Minimum occurrence")

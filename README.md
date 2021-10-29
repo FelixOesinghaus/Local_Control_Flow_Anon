@@ -43,9 +43,8 @@ After executing call_local_control-flow_anon.py you finde some metadata here:
 \\Evaluation\\**folder_name**\\**folder_name**_trace_variant_distribution.csv
 ```
 
-The code in the 'pripel' directory is based on the PRIPEL Framework, the code of which can be found here:
- (https://github.com/samadeusfp/PRIPEL)
-However, only the Trace Variant Query is used for the purposes of this project.
+The code in the 'tvq' directory is based on the Trace Variant Query, the code of which can be found here:
+ (https://github.com/samadeusfp/ELPaaS/tree/master/algorithms/laplace_tv)
 
 The implementation of the inductive in Evaluation directory is based on the Evaluation used for the paper "SaCoFa: Semantics-aware Control-flow Anonymization for Process Mining",
  the code of which can be found here:
@@ -54,16 +53,16 @@ The implementation of the inductive in Evaluation directory is based on the Eval
 
 
 To plot figures you will first need to execute the Trace Variant Query baseline to compare the results to.
-To do so, go to the pripel directy and execute:
+To do so, go to the tvq directy and execute:
 
 ```python
-pripel.py
+tvq.py
 ```
 
 
 Input:(Choose the same as for call_local_control-flow_anon.py for consistenty)
 1) file_name: Name of the log you want to sanitize
-2) folder_name: Name of the folder that will be created in the \\Evaluation\\pripel directory. Sanitized log and metadata will be saved here
+2) folder_name: Name of the folder that will be created in the \\Evaluation\\tvq directory. Sanitized log and metadata will be saved here
 3) epsilon_list: List of all epsilon value that the algorithm,
 4) tries: how often the algorithm is supposed to be execute and produce a sanitized event log for each e in epsilon_list
 

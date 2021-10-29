@@ -26,10 +26,10 @@ column_names = ['epsilon', 'precision','generalization','simplicity','log_fitnes
 for k in range(len(log_name)):
 
     base_path = os.getcwd() + os.sep + folder_name[k] + os.sep
-    base_path_pripel = os.getcwd() + os.sep + "pripel" + os.sep + folder_name[k] + os.sep
+    base_path_tvq = os.getcwd() + os.sep + "tvq" + os.sep + folder_name[k] + os.sep
     
     dfg_df = pd.DataFrame(columns = column_names)
-    pripel_df = pd.DataFrame(columns = column_names)
+    tvq_df = pd.DataFrame(columns = column_names)
 
     for m in range(len(epsRange)):
         
@@ -37,10 +37,10 @@ for k in range(len(log_name)):
             anonymized_log_path = base_path + log_name[k] + '_' + str(epsRange[m])  + '_' + str(i) + ".xes"
             
             result_path = base_path + log_name[k] + '_' + str(epsRange[m]) + '_' + str(i) + ".pickle"
-            result_path_pripel = base_path_pripel + log_name[k] + '_' + str(epsRange[m]) + '_' + str(i) + ".pickle"
+            result_path_tvq = base_path_tvq + log_name[k] + '_' + str(epsRange[m]) + '_' + str(i) + ".pickle"
             
             df_dict = pd.read_pickle(result_path)
-            df_dict_pripel = pd.read_pickle(result_path_pripel)
+            df_dict_tvq = pd.read_pickle(result_path_tvq)
 
             
             fitness = df_dict.pop("fitness", None)
@@ -48,24 +48,24 @@ for k in range(len(log_name)):
             df_dict['log_fitness'] = fitness.pop("log_fitness")
             df_dict['epsilon'] = epsRange[m]
             
-            fitness_pripel = df_dict_pripel.pop("fitness", None)
+            fitness_tvq = df_dict_tvq.pop("fitness", None)
             
-            df_dict_pripel['log_fitness'] = fitness_pripel.pop("log_fitness")
-            df_dict_pripel['epsilon'] = epsRange[m]
+            df_dict_tvq['log_fitness'] = fitness_tvq.pop("log_fitness")
+            df_dict_tvq['epsilon'] = epsRange[m]
             
             f_score = (2.0 * df_dict.get('log_fitness') * df_dict.get('precision'))/(df_dict.get('log_fitness') + df_dict.get('precision'))
             df_dict['f_score'] = f_score
             
-            f_score_pripel = (2.0 * df_dict_pripel.get('log_fitness') * df_dict_pripel.get('precision'))/(df_dict_pripel.get('log_fitness') + df_dict_pripel.get('precision'))
-            df_dict_pripel['f_score'] = f_score_pripel
+            f_score_tvq = (2.0 * df_dict_tvq.get('log_fitness') * df_dict_tvq.get('precision'))/(df_dict_tvq.get('log_fitness') + df_dict_tvq.get('precision'))
+            df_dict_tvq['f_score'] = f_score_tvq
             
             dfg_df = dfg_df.append(df_dict,ignore_index=True)
-            pripel_df = pripel_df.append(df_dict_pripel,ignore_index=True)
+            tvq_df = tvq_df.append(df_dict_tvq,ignore_index=True)
             
             
             
             
     dfg_df.to_csv(base_path + folder_name[k] + "_fitness.csv")
-    pripel_df.to_csv(base_path_pripel + folder_name[k] + "_fitness.csv")
+    tvq_df.to_csv(base_path_tvq + folder_name[k] + "_fitness.csv")
     
 
