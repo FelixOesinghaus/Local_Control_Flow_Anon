@@ -71,7 +71,7 @@ Input:(Choose the same as for call_local_control-flow_anon.py for consistenty)
 
 This may take a while.
 
-##Using the Inductive Miner
+## Using the Inductive Miner
 To be able to plot Fitness, Precision, Simplicity and generalization you first need to call the Inductive Miner
 in the Evaluation directory
 Choose (log_name, folder_name, original_log_path, epsRange, tries) accordingly
