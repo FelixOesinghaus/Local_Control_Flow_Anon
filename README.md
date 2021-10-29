@@ -88,7 +88,7 @@ fitness_plot.py
 ```
 
 
-The trace variant distribution can be plooted by calling
+The trace variant distribution can be plotted by calling
 Choose (file_name, folder_name, epsRange, tries) accordingly
 ```python
 tv_distribution_plot.py
